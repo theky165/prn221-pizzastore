@@ -1,7 +1,16 @@
+using System.Text.Json.Serialization;
+using System;
+using SignalRAssignment.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSession(otp => otp.IdleTimeout = TimeSpan.FromMinutes(5));
+builder.Services.AddDbContext<PizzaStoreContext>();
+builder.Services.AddSignalR();
+builder.Services.AddControllersWithViews()
+                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 
