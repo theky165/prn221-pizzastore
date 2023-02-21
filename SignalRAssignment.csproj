@@ -24,4 +24,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Admin\Member\" />
+    <Folder Include="Pages\Admin\Order\" />
+    <Folder Include="Pages\Admin\Product\" />
+  </ItemGroup>
+
 </Project>
