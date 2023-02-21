@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "meCVHbjCV7WgacJovl0PRf/AcyiUXJsBcKlGMcXrvndj+Hh864STl0p7GFgAd440qrtteAXtV+OWEsGctgFhpA==",
+  "dgSpecHash": "xLqXqFDm5BrmeZPEZeGRWK/+jJ2WeTh+wIMudN9TnBMxEKJzGLJaLTUMVKHlRzgu6G69H7HkionNqfNjgCWcXQ==",
   "success": true,
   "projectFilePath": "D:\\FPT_University\\Term 8\\PRN221\\prn221-pizzastore\\SignalRAssignment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ky.tang\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\ky.tang\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\ky.tang\\.nuget\\packages\\bootstrap\\5.2.3\\bootstrap.5.2.3.nupkg.sha512",
     "C:\\Users\\ky.tang\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ky.tang\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\ky.tang\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

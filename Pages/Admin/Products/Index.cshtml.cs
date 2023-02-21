@@ -11,6 +11,9 @@ namespace SignalRAssignment.Pages.Admin.Products
 {
     public class IndexModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string search { get; set; }
+
         private readonly SignalRAssignment.Models.PizzaStoreContext _context;
 
         public IndexModel(SignalRAssignment.Models.PizzaStoreContext context)

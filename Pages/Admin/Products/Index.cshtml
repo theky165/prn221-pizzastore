@@ -6,22 +6,27 @@
 }
 
 <h1>Product Management</h1>
-<div id="content">
-    <div id="content-left">
-        <ul>
-            <a href="~/Admin/Orders">
-            <li>Orders</li></a>
-            <a href="~/Admin/Products">
-            <li>Products</li></a>
-            <a href="~/Admin/Member">
-            <li>Member</li></a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="~/Admin/Orders">Order</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="~/Admin/Products">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="~/Admin/Member">Member</a>
+            </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" asp-for="search" type="search" placeholder="Enter value.." aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-</div>
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+</nav>
+<button style="margin-top: 20px; margin-bottom:20px" type="button" class="btn btn-success"><a style="color: #fff" asp-page="Create">Create New</a></button>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -67,9 +72,15 @@
                 @Html.DisplayFor(modelItem => item.Supplier.CompanyName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <button type="button" class="btn btn-primary">
+                        <a style="color: #fff" asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a>
+                    </button>
+                    <button type="button" class="btn btn-info">
+                        <a style="color: #fff" asp-page="./Details" asp-route-id="@item.ProductId">Details</a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a style="color: #fff" asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </button>
             </td>
         </tr>
 }
