@@ -34,14 +34,14 @@ namespace SignalRAssignment.Pages.Account
 
             if (acc.Type == "1")
             {
-                //HttpContext.Session.SetString("Staff", JsonSerializer.Serialize(acc));
-                return Redirect("/Admin/Products");
+                HttpContext.Session.SetString("Staff", JsonSerializer.Serialize(acc));
+                return Redirect("~/Admin/Products");
             }
             else if (acc.Type == "2")
             {
-                //HttpContext.Session.SetString("User", JsonSerializer.Serialize(acc));
+                HttpContext.Session.SetString("User", JsonSerializer.Serialize(acc));
             }
-            return Redirect("/Admin/Member");
+            return Redirect("~/Account/Profile");
         }
     }
 }

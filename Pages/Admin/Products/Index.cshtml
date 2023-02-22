@@ -18,14 +18,26 @@
             <li class="nav-item">
                 <a class="nav-link active" href="~/Admin/Member">Member</a>
             </li>
-        </ul>
+        </ul> 
+    </div>
+    <span class="navbar-text">
+        Welcome, @Model.Auth.UserName
+    </span>
+    <span class="navbar-text">
+        <a class="nav-link" href="~/Account/Logout">| Logout</a>
+    </span>
+</nav>
+<div>
+    <div class="float-left">
+        <button style="margin-top: 20px; margin-bottom:20px" type="button" class="btn btn-success"><a style="color: #fff" asp-page="Create">Create New</a></button>
+    </div>
+    <div class="float-right" style="margin-top: 20px">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" asp-for="search" type="search" placeholder="Enter value.." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-</nav>
-<button style="margin-top: 20px; margin-bottom:20px" type="button" class="btn btn-success"><a style="color: #fff" asp-page="Create">Create New</a></button>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>

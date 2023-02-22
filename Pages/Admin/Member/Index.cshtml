@@ -19,6 +19,12 @@
                 <a class="nav-link" href="~/Admin/Member">Member</a>
             </li>
         </ul>
+        <span class="navbar-text">
+            Welcome, @Model.Auth.UserName
+        </span>
+        <span class="navbar-text">
+            <a class="nav-link" href="~/Account/Logout">| Logout</a>
+        </span>
     </div>
 </nav>
 <button style="margin-top: 20px; margin-bottom:20px" type="button" class="btn btn-success"><a style="color: #fff" asp-page="Create">Create New</a></button>

@@ -11,7 +11,7 @@ public partial class Customer
 
     public string? ContactName { get; set; }
 
-    public byte[]? Address { get; set; }
+    public string? Address { get; set; }
 
     public string? Phone { get; set; }
 

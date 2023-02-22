@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SignalRAssignment.Models;
+using System.Text.Json;
 
-namespace SignalRAssignment.Pages.Admin.Member
+namespace SignalRAssignment.Pages.Account
 {
-    public class IndexModel : PageModel
+    public class OrderModel : PageModel
     {
         private readonly SignalRAssignment.Models.PizzaStoreContext _context;
+        [BindProperty]
         public Models.Account Auth { get; set; }
-
-        public IndexModel(SignalRAssignment.Models.PizzaStoreContext context)
+        public OrderModel(SignalRAssignment.Models.PizzaStoreContext context)
         {
             _context = context;
         }
-
-        public IList<Models.Account> Account { get;set; } = default!;
-
+        public IList<Order> Order { get; set; } = default!;
         public async Task<IActionResult> OnGetAsync()
         {
-            if (HttpContext.Session.GetString("Staff") == null)
+            if (HttpContext.Session.GetString("User") == null)
             {
                 return Redirect("/Account/Login");
             }
 
-            Auth = JsonSerializer.Deserialize<Models.Account>(HttpContext.Session.GetString("Staff"));
+            Auth = JsonSerializer.Deserialize<Models.Account>(HttpContext.Session.GetString("User"));
 
             if (Auth == null)
             {
@@ -40,9 +34,11 @@ namespace SignalRAssignment.Pages.Admin.Member
                 Auth = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountId == Auth.AccountId);
             }
 
-            if (_context.Accounts != null)
+            if (_context.Orders != null)
             {
-                Account = await _context.Accounts.ToListAsync();
+                Order = await _context.Orders.Where(o => o.CustomerId == Auth.AccountId)
+                .Include(o => o.Customer).ToListAsync();
+                //Order = await _context.Orders.Where(o => o.CustomerId == Auth.AccountId).ToListAsync();
             }
 
             return Page();

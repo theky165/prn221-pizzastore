@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +16,7 @@ namespace SignalRAssignment.Pages.Admin.Products
         [BindProperty(SupportsGet = true)]
         public string search { get; set; }
         public List<Models.Product> Product { get; set; }
+        public Models.Account Auth { get; set; }
 
         private readonly SignalRAssignment.Models.PizzaStoreContext _context;
 
@@ -22,9 +24,23 @@ namespace SignalRAssignment.Pages.Admin.Products
         {
             _context = context;
         }
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            //Product = getAllProducts();
+            if (HttpContext.Session.GetString("Staff") == null)
+            {
+                return Redirect("/Account/Login");
+            }
+
+            Auth = JsonSerializer.Deserialize<Models.Account>(HttpContext.Session.GetString("Staff"));
+
+            if (Auth == null)
+            {
+                return Forbid();
+            }
+            else
+            {
+                Auth = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountId == Auth.AccountId);
+            }
 
             if (_context.Products != null)
             {
@@ -32,6 +48,8 @@ namespace SignalRAssignment.Pages.Admin.Products
                 .Include(p => p.Category)
                 .Include(p => p.Supplier).ToListAsync();
             }
+
+            return Page();
         }
 
         private List<Models.Product> getAllProducts()
