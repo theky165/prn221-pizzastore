@@ -42,12 +42,7 @@ namespace SignalRAssignment.Pages.Admin.Products
                 Auth = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountId == Auth.AccountId);
             }
 
-            if (_context.Products != null)
-            {
-                Product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Supplier).ToListAsync();
-            }
+            Product = getAllProducts();
 
             return Page();
         }
@@ -58,14 +53,14 @@ namespace SignalRAssignment.Pages.Admin.Products
                 .Include(p => p.Category)
                 .Include(p => p.Supplier).ToList();
 
-            List<Models.Product> products = new List<Models.Product>();
-
             if (!String.IsNullOrEmpty(search))
             {
-                products = Product.Where(p => p.ProductName.ToLower().Contains(search.ToLower()))
+                Product = Product.Where(p => p.ProductName.ToLower().Contains(search.ToLower()) ||
+                p.ProductId.ToString() == search ||
+                p.UnitPrice.ToString() == search)
                     .ToList();
             }
-            return products;
+            return Product;
         }
     }
 }

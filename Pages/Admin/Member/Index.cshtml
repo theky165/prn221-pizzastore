@@ -32,6 +32,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Account[0].AccountId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Account[0].UserName)
             </th>
             <th>
@@ -46,6 +49,9 @@
     <tbody>
 @foreach (var item in Model.Account) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
