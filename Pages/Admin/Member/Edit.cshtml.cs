@@ -20,7 +20,7 @@ namespace SignalRAssignment.Pages.Admin.Member
         }
 
         [BindProperty]
-        public Account Account { get; set; } = default!;
+        public Models.Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

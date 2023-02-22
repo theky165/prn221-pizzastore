@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace SignalRAssignment.Pages.Admin.Products
     {
         [BindProperty(SupportsGet = true)]
         public string search { get; set; }
+        public List<Models.Product> Product { get; set; }
 
         private readonly SignalRAssignment.Models.PizzaStoreContext _context;
 
@@ -20,17 +22,32 @@ namespace SignalRAssignment.Pages.Admin.Products
         {
             _context = context;
         }
-
-        public IList<Product> Product { get;set; } = default!;
-
         public async Task OnGetAsync()
         {
+            //Product = getAllProducts();
+
             if (_context.Products != null)
             {
                 Product = await _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.Supplier).ToListAsync();
             }
+        }
+
+        private List<Models.Product> getAllProducts()
+        {
+            Product = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Supplier).ToList();
+
+            List<Models.Product> products = new List<Models.Product>();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                products = Product.Where(p => p.ProductName.ToLower().Contains(search.ToLower()))
+                    .ToList();
+            }
+            return products;
         }
     }
 }

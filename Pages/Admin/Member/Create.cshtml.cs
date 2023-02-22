@@ -24,7 +24,7 @@ namespace SignalRAssignment.Pages.Admin.Member
         }
 
         [BindProperty]
-        public Account Account { get; set; }
+        public Models.Account Account { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD

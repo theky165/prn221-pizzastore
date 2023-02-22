@@ -18,7 +18,7 @@ namespace SignalRAssignment.Pages.Admin.Member
             _context = context;
         }
 
-      public Account Account { get; set; }
+      public Models.Account Account { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

@@ -18,7 +18,7 @@ namespace SignalRAssignment.Pages.Admin.Member
             _context = context;
         }
 
-        public IList<Account> Account { get;set; } = default!;
+        public IList<Models.Account> Account { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
